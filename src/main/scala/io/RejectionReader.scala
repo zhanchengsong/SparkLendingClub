@@ -6,13 +6,13 @@ import org.apache.spark.sql.{Dataset, SparkSession}
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.StringType
 
-class RejectionReader extends Logging {
+trait RejectionReader extends Logging {
 
   def loadRejectionData(inputPath: String, spark: SparkSession) : Dataset[LoanType] = {
     import spark.implicits._
 
-    val rawData = spark.read.option("header", "true").csv(inputPath);
-    val fields = List("Amount Requested", "Loan Title", "Debt-To-Income Ratio", "State", "Employment Length").map(col);
+    val rawData = spark.read.option("header", "true").csv(inputPath)
+    val fields = List("Amount Requested", "Loan Title", "Debt-To-Income Ratio", "State", "Employment Length").map(col)
 
     rawData.select(fields: _*)
       .withColumnRenamed("Amount Requested", "loan_amnt")

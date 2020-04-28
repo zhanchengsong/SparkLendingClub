@@ -11,8 +11,7 @@ case class LoanType(
                    addr_state: Option[String],
                    emp_length: Option[String],
                    title: Option[String],
-
-
+                   has_collection: Option[Int]
                    ) {
 
 }

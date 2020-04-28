@@ -5,7 +5,7 @@ import org.apache.spark.internal.Logging
 import org.apache.spark.sql.{Dataset, SparkSession}
 import org.apache.spark.sql.functions._
 
-class LoanLoader extends Logging {
+trait LoanLoader extends Logging {
 
   def readLoanData(inputPath: String, spark: SparkSession) : Dataset[LoanType] = {
     import spark.implicits._;
